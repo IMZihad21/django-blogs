@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="initial-scale=1,width=device-width"/>
+        
+        {% block meta_description %}
+        <meta name="description" {% if meta_description_content %}
+            content="{{ meta_description_content|safe }}"{% else %}
+            content="Portfolio site using django"{% endif %}/>
+        {% endblock meta_description %}
+
+        {% block meta_robots %}
+        <meta name="robots"{% if norobots %}
+                content="noindex, nofollow"{% else %}
+                content="index, follow"{% endif %}/>
+        {% endblock meta_robots %}
+
+        <link rel="shortcut icon"
+            type="image/png"
+            href="{% static 'img/favicon.ico' %}"/>
+
+        <!-- css -->
+        <link rel="stylesheet"
+            type="text/css"
+            href="{% static 'css/bootstrap/bootstrap.min.css' %}"/>
+
+        <link rel="stylesheet"
+            type="text/css"
+            href="{% static 'css/bootstrap/bootstrap.override.css' %}"/>
+
+        <link rel="stylesheet" 
+            type="text/css" 
+            href="{% static "css/base.css" %}" />
+
+        <style>
+            {% block style %}{% endblock style %}
+        </style>
+
+        <title>{% block title %}{% endblock title %}</title>
+
+        <!-- javascript - head -->
+        {% block head_start_script %}{% endblock head_start_script %}
+            
+        <!-- htmx -->
+        <script type="text/javascript"
+            src="{% static 'js/third_party/htmx.js' %}">
+        </script>
+
+        <!-- bootstrap -->
+        <script defer type="text/javascript" 
+            src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}">
+        </script>
+
+        <!-- custom base js -->
+        <script type="text/javascript" 
+            src="{% static 'js/base.js' %}">
+        </script>
+        
+        {% block head_end_script %}{% endblock head_end_script %}
+    </head>
+
+    <body hx-target="body" hx-indicator="#htmx-loader">
+        {% block body_start_script %}{% endblock body_start_script %}
+        
+        <noscript>
+            <p>This page requires Javascript to function correctly.</p>
+        </noscript>
+        
+        {% comment %} loading animation {% endcomment %}
+        <div class="htmx-indicator" id="htmx-loader"></div>
+
+        {% include "base/navbar.html" %}
+
+        <main id="main-container">
+
+            {% block content %}{% endblock content %}
+        </main>
+
+        <script>
+            // add CSRFToken to HTMX headers
+            document.body.addEventListener('htmx:configRequest', (event) => {
+                event.detail.headers['X-CSRFToken'] = '{{ csrf_token|safe }}';
+            })
+        </script>
+
+        {% block body_end_script %}{% endblock body_end_script %}
+    </body>
+</html>

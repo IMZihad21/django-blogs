@@ -58,7 +58,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = []
 
 # local django apps
-LOCAL_APPS = ["account.apps.AccountsConfig"]
+LOCAL_APPS = ["account.apps.AccountsConfig", "blog.apps.BlogConfig"]
 
 # Django built-in middleware
 DJANGO_MIDDLEWARE = [
