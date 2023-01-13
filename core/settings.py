@@ -166,7 +166,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 if ON_PRODUCTION:
     STATIC_ROOT = STATIC_DIR
 else:
@@ -174,7 +174,7 @@ else:
 
 # Media files
 
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = MEDIA_DIR
 
 # Default primary key field type

@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a
-              class="nav-link py-md-1 active border-bottom border-dark"
+              class="nav-link py-md-1 {% if request.path_info == "/" %}active border-bottom border-dark{% endif %}"
               href="/"
             >
               Home

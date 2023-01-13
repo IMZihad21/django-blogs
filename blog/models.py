@@ -12,6 +12,7 @@ class Post(models.Model):
         get_user_model(), on_delete=models.CASCADE, related_name="blog_posts"
     )
     content = models.TextField()
+    image = models.ImageField(upload_to="posts/%Y/%m/%d", null=True, blank=True)
     status = models.CharField(choices=STATUS, default="DRAFT", max_length=50)
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)

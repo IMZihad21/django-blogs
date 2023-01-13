@@ -40,7 +40,7 @@
             {% block style %}{% endblock style %}
         </style>
 
-        <title>{{ page_title|default:'Home' }} | BlogPOT</title>
+        <title>{{ page_title|default:'BlogPOT' }}</title>
 
         <!-- javascript - head -->
         {% block head_start_script %}{% endblock head_start_script %}
@@ -63,22 +63,20 @@
         {% block head_end_script %}{% endblock head_end_script %}
     </head>
 
-    <body hx-target="body" hx-indicator="#htmx-loader">
+    <body hx-target="body" hx-indicator="#htmx-loader" hx-push-url="true" class="d-flex flex-column min-vh-100">
         {% block body_start_script %}{% endblock body_start_script %}
-        
-        <noscript>
-            <p>This page requires Javascript to function correctly.</p>
-        </noscript>
         
         {% comment %} loading animation {% endcomment %}
         <div class="htmx-indicator" id="htmx-loader"></div>
 
-        {% include "base/navbar.html" %}
+        {% include "base/header.html" %}
 
-        <main id="main-container" class="container">
+        <main id="main-container" class="container flex-grow-1">
 
             {% block content %}{% endblock content %}
         </main>
+
+        {% include "base/footer.html" %}
 
         <script>
             // add CSRFToken to HTMX headers
