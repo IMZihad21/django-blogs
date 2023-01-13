@@ -2,21 +2,33 @@
 {% load static %}
 
 {% block content %}
-    <img 
-        class="blog-image" 
-        src="{% get_media_prefix %}{{ blog.image }}" 
-        alt="{{ blog.title }}"
-        loading="lazy"
-    />
-    <figure class="text-center">
-        <blockquote class="blockquote">
-        <p class="blog-title">{{ blog.title }}</p>
-        </blockquote>
-        <figcaption class="blockquote-footer">
-        Authored by <cite title="Source Title">{{ blog.author.get_full_name }}</cite>
-        </figcaption>
-    </figure>
-    <p class="blog-content">
-        {{ blog.content|linebreaks }}
-    </p>
+    {% if blog %}
+        {% if blog.image %}
+            <img 
+                class="blog-image" 
+                src="{% get_media_prefix %}{{ blog.image }}" 
+                alt="{{ blog.title }}"
+                loading="lazy"
+            />
+        {% endif %}
+
+        <figure class="text-center">
+            <blockquote class="blockquote">
+                <p class="blog-title">{{ blog.title }}</p>
+            </blockquote>
+            {% if blog.author.get_full_name %}
+                <figcaption class="blockquote-footer">
+                    Authored by <cite title="Source Title">{{ blog.author.get_full_name }}</cite>
+                </figcaption>
+            {% endif %}
+        </figure>
+
+        <p class="blog-content">
+            {{ blog.content|linebreaks }}
+        </p>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            Blog is not available!
+        </div>
+    {% endif %}
 {% endblock content %}

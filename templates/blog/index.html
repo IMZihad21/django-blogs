@@ -10,15 +10,17 @@
                         Blog - {{ forloop.counter }}
                     </div>
                     <div class="row">
-                        <div class="col-4">
-                            <img 
-                            class="blog-card-image" 
-                            src="{% get_media_prefix %}{{ blog.image }}" 
-                            alt="{{ blog.title }}"
-                            loading="lazy"
-                            />
-                        </div>
-                        <div class="col-8">
+                        {% if blog.image %}
+                            <div class="col-4">
+                                <img 
+                                class="blog-card-image" 
+                                src="{% get_media_prefix %}{{ blog.image }}" 
+                                alt="{{ blog.title }}"
+                                loading="lazy"
+                                />
+                            </div>
+                        {% endif %}
+                        <div class="{% if blog.image %}col-8{% else %}col-12{% endif %}">
                             <div class="card-body">
                               <h5 class="card-title">{{ blog.title }}</h5>
                               <p class="card-text">{{ blog.content|truncatechars:300 }}</p>

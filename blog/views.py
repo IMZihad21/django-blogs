@@ -14,6 +14,9 @@ class Home(View):
 class Details(View):
     def get(self, request, *args, **kwargs):
         blog_slug = kwargs["blog_slug"]
-        blog = Blog.objects.get(status="PUBLISH", slug=blog_slug)
-        context = {"page_title": blog.title, "blog": blog}
+        try:
+            blog = Blog.objects.get(status="PUBLISH", slug=blog_slug)
+            context = {"page_title": blog.title, "blog": blog}
+        except Blog.DoesNotExist:
+            context = {"page_title": "Not Found!"}
         return render(request, "blog/details.html", context)
