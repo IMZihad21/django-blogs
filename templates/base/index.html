@@ -40,7 +40,7 @@
             {% block style %}{% endblock style %}
         </style>
 
-        <title>{% block title %}{% endblock title %}</title>
+        <title>{{ page_title|default:'Home' }} | BlogPOT</title>
 
         <!-- javascript - head -->
         {% block head_start_script %}{% endblock head_start_script %}
@@ -75,7 +75,7 @@
 
         {% include "base/navbar.html" %}
 
-        <main id="main-container">
+        <main id="main-container" class="container">
 
             {% block content %}{% endblock content %}
         </main>

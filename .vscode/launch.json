@@ -7,10 +7,10 @@
       "request": "launch",
       "program": "${workspaceFolder}\\manage.py",
       "console": "internalConsole",
-      "args": ["runserver", "--noreload", "--nothreading"],
+      "args": ["runserver", "--nothreading", "localhost:8080"],
       "django": true,
-      "internalConsoleOptions": "openOnSessionStart",
-      "subProcess": false
+      "subProcess": false,
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ]
 }
