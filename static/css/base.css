@@ -68,6 +68,12 @@ body {
     object-fit: cover;
 }
 
+.blog-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .blog-content {
     font-size: 18px;
 }
