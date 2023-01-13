@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from blog.models import Post
+from blog.models import Blog
 
 
-class PostAdmin(admin.ModelAdmin):
+class BlogAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(Blog, BlogAdmin)

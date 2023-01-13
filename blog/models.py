@@ -5,11 +5,11 @@ from django.contrib.auth import get_user_model
 STATUS = (("DRAFT", "Draft"), ("PUBLISH", "Publish"))
 
 
-class Post(models.Model):
+class Blog(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
-        get_user_model(), on_delete=models.CASCADE, related_name="blog_posts"
+        get_user_model(), on_delete=models.CASCADE, related_name="blogs"
     )
     content = models.TextField()
     image = models.ImageField(upload_to="posts/%Y/%m/%d", null=True, blank=True)
