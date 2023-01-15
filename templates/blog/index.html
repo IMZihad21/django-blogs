@@ -9,7 +9,7 @@
                     <div class="card-header">
                         Blog - {{ forloop.counter }}
                     </div>
-                    <div class="row">
+                    <div class="row h-100">
                         {% if blog.image %}
                             <div class="col-4">
                                 <img 
@@ -21,9 +21,10 @@
                             </div>
                         {% endif %}
                         <div class="{% if blog.image %}col-8{% else %}col-12{% endif %}">
-                            <div class="card-body">
+                            <div class="card-body  h-100 d-flex flex-column">
                               <h5 class="card-title">{{ blog.title }}</h5>
-                              <p class="card-text">{{ blog.content|truncatechars:300 }}</p>
+                              {% if blog.image %}<p class="card-text  flex-grow-1">{{ blog.content|truncatechars:300 }}</p>{% else %}<p class="card-text  flex-grow-1">{{ blog.content|truncatechars:600 }}</p>{% endif %}
+                              
                               <a href="{% url 'blog_detail' blog.slug %}" class="btn btn-secondary">View Blog Post</a>
                             </div>
                         </div>
@@ -34,7 +35,9 @@
                   </div>                     
             </div>
         {% empty %}
-            <p>Sorry, no blog in this list.</p>
+            <div class="alert alert-warning" role="alert">
+                Sorry, no blog in this list.
+            </div>
         {% endfor %}
     </div>
 {% endblock content %}
